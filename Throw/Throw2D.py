@@ -2,12 +2,13 @@ from math import cos, sin
 from Physical.Physical2D import Physical2D
 
 class Throw2D(Physical2D):
-    """_Represents a throw in 2D not considering the air resistance_
+    """Represents a throw in 2D not considering the air resistance
     """
+
     g: float = 9.81 # Gravitational constant
     
     def __init__(self, v0: float, y0: float, x0: float = 0, theta: float = 0, t0: float = 0, time_step: float = 0.01):
-        """The construtor
+        """Represents a throw in 2D not considering the air resistance
 
         Args:
             v0 (float): The initial velocity

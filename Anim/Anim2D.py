@@ -4,11 +4,12 @@ from Physical.Physical2D import Physical2D
 
 class Anim2D():
     """A class for animating a 2D movement\n
-    The animation is paused if the object would pass the borders of it
+        The animation is paused if the object would pass the borders of it
     """
 
-    def __init__(self, xlims: tuple[float, float], ylims: tuple[float, float], movement: Physical2D, interval: float = 1, grid: bool = False):
-        """The constructor
+    def __init__(self, xlims: tuple[float, float], ylims: tuple[float, float], movement: Physical2D, interval: float = 1, grid: bool = False, precision: int = 5):
+        """A class for animating a 2D movement\n
+           The animation is paused if the object would pass the borders of it
 
         Args:
             xlims (tuple[float, float]): The limits (size) of the x axis (from .. to ..)
@@ -16,10 +17,13 @@ class Anim2D():
             movement (Physical2D): The physical movement to simulate
             interval (float): The interval between each update of the animation. Defaults to 1.
             grid (bool): If the graphs should have a grid. Defaults to False.
+            precision (int): The number of decimal places for the x, y and time output
         """
         self.movement = movement
         self.xlims = xlims
         self.ylims = ylims
+
+        self.precision = precision
 
         self.fig, self.ax = plt.subplots()  # get the figure and axis
         self.x_axis = [] # set the x axis to be empty
@@ -39,7 +43,7 @@ class Anim2D():
         """
         x, y, t = self.movement.get_state()
         
-        print(f"X coordinate: {x}", f"Y coordinate: {y}", f"Time: {t}", sep="\t")
+        print(f"X coordinate: {x:.{self.precision}f}", f"Y coordinate: {y:.{self.precision}f}", f"Time: {t:.{self.precision}f}", sep="\t")
 
         # Pause the animation if the object would go out of the borders of the graph
         if x < self.xlims[0] or x > self.xlims[1] or y < self.ylims[0] or y > self.ylims[1]:
